@@ -1,5 +1,5 @@
 from django.urls import path
-from . views import (homepage, aboutpage, product_detail, category_detail)
+from . views import (homepage, aboutpage, product_detail, category_detail, search)
 
 
 app_name = "main"
@@ -14,4 +14,5 @@ urlpatterns = [
 
     path('category-detail<slug:slug>/', category_detail, name='category_detail'),
 
+    path('search/', search, name='search')
 ]

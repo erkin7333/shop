@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+LOGIN_REDIRECT_URL = 'accounts:myaccount'
 LOGOUT_REDIRECT_URL = 'main:home_page'
 
 

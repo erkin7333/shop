@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Product, Category
 from django.contrib.auth.models import User
+from django.db.models import Q
 
 
 
@@ -31,3 +32,13 @@ def category_detail(request, slug):
     }
     return render(request, 'product/category-detail.html', context=context)
 
+
+def search(request):
+    query = request.GET.get('query', '')
+    products = Product.objects.filter(Q(title__icontains=query) | Q(description__icontains=query))
+
+    context = {
+        'query': query,
+        'products': products
+    }
+    return render(request, 'product/search.html', context=context)

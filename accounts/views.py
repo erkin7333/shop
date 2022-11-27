@@ -24,7 +24,7 @@ def signup(request):
             user = form.save()
             login(request, user)
             userprofile = Userprofile.objects.create(user=user)
-            return redirect('main:home-page')
+            return redirect('accounts:login')
     else:
         form = UserCreationForm()
     context = {

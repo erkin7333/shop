@@ -12,10 +12,21 @@
     <div class="logo">
         <a href="{% url 'main:home-page' %}" class="text-2xl text-white">Home</a>
     </div>
+    <div class="search">
+        <form method="get" action="{% url 'main:search' %}">
+            <input type="search" name="query" placeholder="Search">
+            <button type="submit" class="">Search</button>
+        </form>
+    </div>
+
     <div class="menu flex space-x-4">
         {% menu %}
         {% if request.user.is_authenticated %}
         <a href="{% url 'accounts:myaccount' %}" class="text-white">My account</a>
+        {% else %}
+        <a href="{% url 'accounts:sign_up' %}" class="text-white">Sign Up</a>
+        <a href="{% url 'accounts:login' %}" class="text-white">Login</a>
+
         {% endif %}
         <a href="{% url 'main:about-page' %}" class="text-white">About</a>
     </div>
