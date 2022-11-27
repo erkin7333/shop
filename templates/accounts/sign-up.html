@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+
+{% block title %} Sign Up {% endblock %}
+
+
+{% block content %}
+    <h1 class="text-2xl">Sign Up</h1>
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="py-4 px-8 bg-teal-800 text-white">Saqlash</button>
+</form>
+{% endblock %}

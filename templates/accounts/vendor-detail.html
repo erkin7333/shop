@@ -1,10 +1,12 @@
 {% extends 'layout.html' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}{% firstof user.get_full_name user.username %}{% endblock %}
 
 {% block content %}
+<h1 class="text-2xl">{% firstof user.get_full_name user.username %}</h1>
+
 <div class="flex flex-wrap">
-    {% for pro in product %}
+    {% for pro in user.products.all %}
     <div class="product w-1/3 p-2">
         <div class="py-5 bg-gray-200">
             <a href="{% url 'main:product_detail' pro.slug %}">

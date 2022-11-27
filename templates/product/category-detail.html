@@ -1,23 +1,28 @@
 {% extends 'layout.html' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Category Detail{% endblock %}
 
 {% block content %}
+<h1 class="text=2xl">
+    {{ categories.title }}
+</h1>
+
+
 <div class="flex flex-wrap">
-    {% for pro in product %}
     <div class="product w-1/3 p-2">
+        {% for pro in product %}
         <div class="py-5 bg-gray-200">
-            <a href="{% url 'main:product_detail' pro.slug %}">
-                {% if pro.image %}
+            {% if pro.image %}
                 <div class="image">
                     <img src="{{ pro.image.url }}" alt="">
                 </div>
                 {% endif %}
+            <a href="{% url 'main:product_detail' pro.slug %}">
                 <h2 class="text-xl ml-3">{{ pro.title }}</h2>
             </a>
             <p class="text-xs text-gray-600 ml-3">$ {{ pro.get_diplay_price }}</p>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </div>
 {% endblock %}

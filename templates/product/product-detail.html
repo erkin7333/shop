@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% block title %}Prduct Detail{% endblock %}
+
+{% block content %}
+{% if product.image %}
+<div class="image">
+    <img src="{{ product.image.url }}" alt="">
+</div>
+{% endif %}
+<h1 class="text-2xl">{{ product.title }}</h1>
+<p class="text-xs text-bg-500 mt-2">${{ product.get_diplay_price }}</p>
+{% if product.description %}
+<p class="mt-4">
+    {{ product.description }}
+    -
+    <a href="{% url 'accounts:vendor_detail' product.user.id %}">
+        {% firstof user.get_full_name user.username %}
+    </a>
+</p>
+{% endif %}
+
+{% endblock %}

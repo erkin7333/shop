@@ -1,0 +1,6 @@
+
+{% for cat in categories %}
+<a href="{% url 'main:category_detail' cat.slug %}" class="text-white">{{ cat.title }}</a>
+{% endfor %}
+<a href="{% url 'accounts:sign_up' %}" class="text-white">Sign Up</a>
+<a href="{% url 'accounts:login' %}" class="text-white">Login</a>
