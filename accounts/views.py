@@ -8,12 +8,14 @@ from django.contrib import messages
 from .models import Userprofile
 from .forms import ProductForm
 from main.models import Product, Category
-
+from main.cart import Cart
 
 def vendor_detail(request, pk):
     user = User.objects.get(id=pk)
+    products = user.products.filter(status=Product.ACTIVE)
     context = {
-        'user': user
+        'user': user,
+        'products': products
     }
     return render(request, 'accounts/vendor-detail.html', context=context)
 
@@ -39,8 +41,11 @@ def signup(request):
 
 @login_required
 def my_stor(request):
-
-    return render(request, 'accounts/my-store.html')
+    products = request.user.products.exclude(status=Product.DELETED)
+    context = {
+        'products': products
+    }
+    return render(request, 'accounts/my-store.html', context=context)
 
 @login_required
 def add_product(request):
@@ -76,6 +81,7 @@ def edit_product(request, pk):
         form = ProductForm(instance=product)
     context = {
         'title': "Maxsulotni o'zgartirish",
+        'product': product,
         'form': form
     }
     return render(request, 'accounts/add-product.html', context=context)
@@ -84,4 +90,8 @@ def edit_product(request, pk):
 @login_required
 def delete_product(request, pk):
     product = Product.objects.filter(user=request.user).get(id=pk)
+    product.status = Product.DELETED
+    product.save()
+    messages.success(request, "Maxsulot o'chirildi")
+    return redirect("accounts:my_stor")
 

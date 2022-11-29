@@ -137,7 +137,8 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = BASE_DIR / 'media'
 
-
+CART_SESSION_ID = "cart"
+SESSION_COOKIE_AGE = 86400
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

@@ -12,9 +12,9 @@
     <button type="submit" class="py-4 px-8 bg-teal-500 text-white hover:bg-teal-900">{{ title }}</button>
 </form>
 
-{% if title == "Maxsulotni o'zgartirish" %}
+{% if product %}
 
-<a href="" class="mt-3 inline-block py-4 px-8 bg-red-500 text-white">O'chirish</a>
+<a href="{% url 'accounts:delete_product' product.pk %}" class="mt-3 inline-block py-4 px-8 bg-red-500 text-white">O'chirish</a>
 
 {% endif %}
 {% endblock %}

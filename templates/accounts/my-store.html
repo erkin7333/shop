@@ -18,9 +18,9 @@
 
 <h2 class="mt-6 text-xl">Mening maxsulotlarim</h2>
 
-{% if request.user.products.all %}
+{% if products %}
     <div class="flex flex-wrap">
-    {% for pro in request.user.products.all %}
+    {% for pro in products %}
     <div class="product w-1/3 p-2">
         <div class="py-5 bg-gray-200">
             <a href="{% url 'accounts:edit_product' pro.pk %}">
@@ -32,6 +32,8 @@
                 <h2 class="text-xl ml-3">{{ pro.title }}</h2>
             </a>
             <p class="text-xs text-gray-600 ml-3">$ {{ pro.get_diplay_price }}</p>
+            <hr class="my-3">
+            <p><strong>Status: </strong>{{ pro.get_status_display }}</p>
         </div>
     </div>
     {% endfor %}

@@ -31,6 +31,7 @@ class Product(models.Model):
     description = models.TextField(blank=True)
     price = models.FloatField()
     image = models.ImageField(upload_to='product')
+    thumbnail = models.ImageField(upload_to='product/thumbnail', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=50, choices=STATUS_CHOCES, default=ACTIVE)
