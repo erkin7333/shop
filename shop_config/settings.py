@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'accounts:myaccount'
 LOGOUT_REDIRECT_URL = 'main:home_page'
 
@@ -69,6 +70,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'main.context_processors.cart'
             ],
         },
     },
